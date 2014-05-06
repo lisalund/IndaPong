@@ -1,41 +1,28 @@
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 public class PongPanel extends JPanel{
-
+	
 	/**
-	 * constructs the panel for the pong game
-	 * 
+	 * Constructor for the PongPanel class
+	 * Sets the background color
 	 */
-	public PongPanel (){
-		JPanel pongPanel = new JPanel();
-		//pongPanel.setBackground(Color.cyan);
+	public PongPanel(){
+		setBackground(Color.BLACK);
 	}
 	
 	/**
-	 * Sets a background to the PongPanel
-	 * @param c The desired colour
+	 * Paints the rectangle that limits the playing area
+	 * this rectangle is 100 px shorter and narrower than the main window.
 	 */
-	public void paintBackground(PongPanel p, Color c){
-		p.setBackground(c);
-	}
-	
-	/**
-	 * Sets a border to the PongPanel
-	 * 
-	 * @param p The pongPanel to receive the border
-	 * @param w The width of the border
-	 * @param c The colour of the border
-	 */
-	public void setBorder(PongPanel p, int w, Color c){
-		p.setBorder(new LineBorder(c, w));
-	}
-	
 	public void paintComponent(Graphics g){
-		g.drawRect(0, 0, 600, 400);
+		
+		super.paintComponent(g);
+		g.setColor(Color.WHITE);
+		g.drawRect(70, 75, 650, 450);
 	}
-
 	
 }

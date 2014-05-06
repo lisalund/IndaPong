@@ -4,23 +4,23 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 public class Pong implements KeyListener{
+	private static final int WIDTH = 800; //the width of the window
+	private static final int HEIGHT = 600; //the height of the window
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		JFrame window = new JFrame("Pong");
 		PongPanel pongPanel = new PongPanel();
-		pongPanel.paintBackground(pongPanel, Color.RED);
-		pongPanel.setBorder(pongPanel, 7, Color.CYAN);
-		
-		
+				
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.add(pongPanel);
+		window.setLayout(new BorderLayout());
+		window.add(pongPanel, BorderLayout.CENTER);
 		
 		//måla upp fönstret lämplig storlek c:
-		window.setSize(800, 600);
+		window.setSize(WIDTH, HEIGHT);
 		window.setVisible(true);
 		//actionlistener p1 och p2
 
