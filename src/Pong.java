@@ -7,6 +7,9 @@ public class Pong implements KeyListener{
 	private static final int WIDTH = 800; //the width of the window
 	private static final int HEIGHT = 600; //the height of the window
 
+	private static int playerOneScore = 0;
+	private static int playerTwoScore = 0;
+
 	/**
 	 * @param args
 	 */
@@ -52,5 +55,14 @@ public class Pong implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public int getP1Score() {
+		return playerOneScore;
+	}
+
+	public int getP2Score() {
+		return playerTwoScore;
+	}
+	
 
 }
