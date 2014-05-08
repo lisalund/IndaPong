@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 
 public class PongPanel extends JPanel{
 	
-	private int rectangleX = 70; //the playing field's x-position
-	private int rectangleY = 75; //the playing field's y-position
-	private int fieldWidth = 650; //the width of the playing field
-	private int fieldHeight = 450; //the height of the playing filed
+	private final static int rectangleX = 70; //the playing field's x-position
+	private final static int rectangleY = 75; //the playing field's y-position
+	private final static int fieldWidth = 650; //the width of the playing field
+	private final static int fieldHeight = 450; //the height of the playing filed
 	/**
 	 * Constructor for the PongPanel class
 	 * Sets the background color
@@ -63,5 +63,7 @@ public class PongPanel extends JPanel{
 				(fieldWidth/2), rectangleY + fieldHeight);
 		
 	}
+	
+	
 	
 }
