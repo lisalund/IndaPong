@@ -6,9 +6,19 @@ import javax.swing.JFrame;
 public class Pong implements KeyListener{
 	private static final int WIDTH = 800; //the width of the window
 	private static final int HEIGHT = 600; //the height of the window
+<<<<<<< HEAD
+
+	private static int playerOneScore = 0;
+	private static int playerTwoScore = 0;
+
+=======
 	private Ball ball = new Ball();
+<<<<<<< HEAD
 	private static Paddle p1; //the right player
 	private static Paddle p2; //the left player
+=======
+>>>>>>> FETCH_HEAD
+>>>>>>> 824e9dcebde3faa8622280a3e872774d25f79f8a
 	/**
 	 * @param args
 	 */
@@ -57,5 +67,14 @@ public class Pong implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public int getP1Score() {
+		return playerOneScore;
+	}
+
+	public int getP2Score() {
+		return playerTwoScore;
+	}
+	
 
 }

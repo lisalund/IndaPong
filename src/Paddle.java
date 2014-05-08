@@ -9,6 +9,7 @@ public class Paddle {
 	static final int paddleWidth = 6;
 	static int locationX = 0;
 	static int locationY;
+	static final int paddleSpeed = 5;
 	
 	/**
 	 * Creates a new paddle.

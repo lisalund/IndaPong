@@ -20,6 +20,8 @@ public class PongPanel extends JPanel{
 	static int ballSpeedX;
 	static int ballSpeedY;
 
+	
+
 	/**
 	 * Constructor for the PongPanel class
 	 * Sets the background color
@@ -56,6 +58,8 @@ public class PongPanel extends JPanel{
 		return rectangleX + fieldWidth;
 	}
 	
+
+
 	/**
 	 * Paints the rectangle that limits the playing area and the dotted line
 	 * that separates the two halves.
