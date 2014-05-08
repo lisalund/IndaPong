@@ -7,12 +7,44 @@ import javax.swing.JPanel;
 
 public class PongPanel extends JPanel{
 	
+	private int rectangleX = 70; //the playing field's x-position
+	private int rectangleY = 75; //the playing field's y-position
+	private int fieldWidth = 650; //the width of the playing field
+	private int fieldHeight = 450; //the height of the playing filed
 	/**
 	 * Constructor for the PongPanel class
 	 * Sets the background color
 	 */
 	public PongPanel(){
 		setBackground(Color.BLACK);
+	}
+	
+	/**
+	 * returns the y-value for the top of the playing field
+	 */
+	public int getYMin(){
+		return rectangleY;
+	}
+	
+	/**
+	 * returns the y-value  for the bottom of the playing field
+	 */
+	public int getYMax(){
+		return rectangleY + fieldHeight;
+	}
+	
+	/**
+	 * returns the x-value for the left edge of the playing field
+	 */
+	public int getXMin(){
+		return rectangleX;
+	}
+	
+	/**
+	 * returns the x-value for the right edge of the playing field
+	 */
+	public int getXMax(){
+		return rectangleX + fieldWidth;
 	}
 	
 	/**
@@ -24,16 +56,11 @@ public class PongPanel extends JPanel{
 		
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
-		g.drawRect(70, 75, 650, 450);
+		g.drawRect(rectangleX, rectangleY, fieldWidth, fieldHeight);
 		
-		paintLine(g, ((70+650)/2), );
-		
-	}
-	
-	/**
-	 * Creates a dotted line from point x to point y.
-	 */
-	public void paintLine(Graphics g, int x, int y){
+		//draw a line down the middle of the playing field
+		g.drawLine(rectangleX + (fieldWidth/2), rectangleY, rectangleX + 
+				(fieldWidth/2), rectangleY + fieldHeight);
 		
 	}
 	
