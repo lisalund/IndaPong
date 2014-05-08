@@ -11,6 +11,13 @@ public class PongPanel extends JPanel{
 	private final static int rectangleY = 75; //the playing field's y-position
 	private final static int fieldWidth = 650; //the width of the playing field
 	private final static int fieldHeight = 450; //the height of the playing filed
+
+	static final int ballDiameter = 10;
+	static int ballX;
+	static int ballY;
+	static int ballSpeedX;
+	static int ballSpeedY;
+
 	/**
 	 * Constructor for the PongPanel class
 	 * Sets the background color
