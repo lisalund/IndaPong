@@ -7,6 +7,8 @@ public class Pong implements KeyListener{
 	private static final int WIDTH = 800; //the width of the window
 	private static final int HEIGHT = 600; //the height of the window
 	private Ball ball = new Ball();
+	private static Paddle p1; //the right player
+	private static Paddle p2; //the left player
 	/**
 	 * @param args
 	 */
@@ -23,6 +25,9 @@ public class Pong implements KeyListener{
 		window.setSize(WIDTH, HEIGHT);
 		window.setVisible(true);
 		//actionlistener p1 och p2
+		
+		p1 = new Paddle(20, 60, 100, 100); //bara lite testvärden för att se att de ritas upp...
+		p2 = new Paddle(20, 60, 250, 200);
 
 	}
 
