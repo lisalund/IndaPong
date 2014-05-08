@@ -6,10 +6,14 @@ import javax.swing.JFrame;
 public class Pong implements KeyListener{
 	private static final int WIDTH = 800; //the width of the window
 	private static final int HEIGHT = 600; //the height of the window
+<<<<<<< HEAD
 
 	private static int playerOneScore = 0;
 	private static int playerTwoScore = 0;
 
+=======
+	private Ball ball = new Ball();
+>>>>>>> FETCH_HEAD
 	/**
 	 * @param args
 	 */
