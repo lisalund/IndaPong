@@ -7,8 +7,8 @@ public class Ball {
 	static final int ballDiameter = 10;
 	static int ballX;
 	static int ballY;
-	static int ballSpeedX = 10;
-	static int ballSpeedY = 10;
+	static int ballSpeedX;
+	static int ballSpeedY;
 	
 	/**
 	 * Creates a new ball
@@ -18,9 +18,39 @@ public class Ball {
 	public void ball(int paneWidth, int paneHeigth) {
 		ballX = paneWidth/2;
 		ballY = paneHeigth/2;
+		Random rn = new Random();
+		ballSpeedX = nextInt(10)+1;
+		if (ballSpeedX > 5) {
+			ballSpeedX = 5 - ballSpeedX;
+		}
+		ballSpeedY = nextInt(10)+1;
+		if (ballSpeedY > 5) {
+			ballSpeedY = 5 - ballSpeedY;
+		}
 	}
 	
-	public void move() {
+	/**
+	 * Checks if the ball interacts
+	 * with the walls, the paddles
+	 * or enters a player's zone.
+	 */
+	public void ifInteract() {
+		if (ballY == getYMin()) {
+			ballSpeedY = -ballSpeedY;
+		} 
+
+		if (ballY == getYMax()) {
+			ballSpeedY = -ballSpeedY;
+		}
+
+		if (ballX == getPaddleX || ballX == paneWidth - getPaddleX) {
+			if 
+		}
+
+
+	}
+
+	public void reset() {
 
 	}
 
