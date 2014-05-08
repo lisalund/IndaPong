@@ -53,7 +53,6 @@ public class PongPanel extends JPanel{
 	 * the rectangle is 100 px shorter and narrower than the main window.
 	 */
 	public void paintComponent(Graphics g){
-		// LET US TEST THIS GIT SHIT LOL OMG
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
 		g.drawRect(rectangleX, rectangleY, fieldWidth, fieldHeight);
@@ -62,8 +61,17 @@ public class PongPanel extends JPanel{
 		g.drawLine(rectangleX + (fieldWidth/2), rectangleY, rectangleX + 
 				(fieldWidth/2), rectangleY + fieldHeight);
 		
+		
 	}
 	
-	
-	
+	/**
+	 * draw the ball in the middle of the playingfield
+	 */
+	public void resetBall(Graphics g){
+		//paint the ball
+				g.fillOval(rectangleX + (fieldWidth/2) - 10, +
+						rectangleY + (fieldHeight/2) - 10, 20, 20);
+				
+	}
+		
 }
