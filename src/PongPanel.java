@@ -53,7 +53,6 @@ public class PongPanel extends JPanel{
 	 * the rectangle is 100 px shorter and narrower than the main window.
 	 */
 	public void paintComponent(Graphics g){
-		// LET US TEST THIS GIT SHIT LOL OMG
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
 		g.drawRect(rectangleX, rectangleY, fieldWidth, fieldHeight);
