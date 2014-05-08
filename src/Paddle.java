@@ -44,4 +44,8 @@ public class Paddle {
 		} // Do nothing otherwise
 	}
 
+	public int getPaddleY() {
+		return location
+	}
+
 }
