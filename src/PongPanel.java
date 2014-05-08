@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
+import java.util.Random;
+
 import javax.swing.JPanel;
 
 public class PongPanel extends JPanel{
@@ -12,7 +14,7 @@ public class PongPanel extends JPanel{
 	private final static int fieldWidth = 650; //the width of the playing field
 	private final static int fieldHeight = 450; //the height of the playing filed
 
-	static final int ballDiameter = 10;
+	static final int ballDiameter = 20;
 	static int ballX;
 	static int ballY;
 	static int ballSpeedX;
@@ -68,17 +70,28 @@ public class PongPanel extends JPanel{
 		g.drawLine(rectangleX + (fieldWidth/2), rectangleY, rectangleX + 
 				(fieldWidth/2), rectangleY + fieldHeight);
 		
-		
 	}
+//	
+//	/**
+//	 * draw the ball in the middle of the playingfield
+//	 */
+//	public void newBall(){
+//		//create a new ball in the middle of the field
+//		//g.fillOval(rectangleX + (fieldWidth/2) - ballDiameter/2, +
+//			//rectangleY + (fieldHeight/2) - ballDiameter/2, ballDiameter, ballDiameter);
+//		
+//		ballX = fieldWidth/2;
+//		ballY = fieldHeight/2;
+//		Random rn = new Random();
+//		ballSpeedX = rn.nextInt(10)+1;
+//		if (ballSpeedX > 5) {
+//			ballSpeedX = 5 - ballSpeedX;
+//		}
+//		ballSpeedY = rn.nextInt(10)+1;
+//		if (ballSpeedY > 5) {
+//			ballSpeedY = 5 - ballSpeedY;
+//		}
+//	}
 	
-	/**
-	 * draw the ball in the middle of the playingfield
-	 */
-	public void resetBall(Graphics g){
-		//paint the ball
-				g.fillOval(rectangleX + (fieldWidth/2) - 10, +
-						rectangleY + (fieldHeight/2) - 10, 20, 20);
-				
-	}
 		
 }
