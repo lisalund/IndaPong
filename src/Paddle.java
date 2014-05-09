@@ -78,5 +78,13 @@ public class Paddle extends Sprite implements Commons { //vars är Sprite?
 			deltaPaddle = 0;
 		}
 	}
+	
+	public int getUp(){
+		return up;
+	}
+	
+	public int getDown(){
+		return down;
+	}
 
 }
