@@ -54,7 +54,7 @@ public class Pong implements KeyListener{
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Nothing happens when a key isn't being pressed
 		
 	}
 
@@ -63,8 +63,20 @@ public class Pong implements KeyListener{
 	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		int key = e.getKeyCode();
 		
+		if (key == KeyEvent.VK_UP){ //down arrow key
+			p1.moveUp();
+		}
+		if (key == KeyEvent.VK_DOWN){ //up arrow key
+			p1.moveDown();
+		}
+		if (key == KeyEvent.VK_W){ //w key
+			p2.moveUp();
+		}
+		if (key == KeyEvent.VK_S){ //s keys
+			p2.moveDown();
+		}
 	}
 
 	public int getP1Score() {
