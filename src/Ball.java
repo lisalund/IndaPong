@@ -1,33 +1,54 @@
+package pong;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 /**
- * the class for the ball in a pong game
- * @author lisa
- *
+ * The class for the ball in a 
+ * game of pong
+ * @author Lisa Lund & Anton Obom 
  */
-public class Ball {
-	static final int ballDiameter = 10;
-	static int ballX;
-	static int ballY;
-	static int ballSpeedX;
-	static int ballSpeedY;
+public class Ball extends Sprite implements Commons {
+
+	private int deltaX;
+	private int deltaY;
+	protected String ball = "../sushi1.png"
 	
 	/**
-	 * Creates a new ball
-	 * according to standard
-	 * numbers.
+	 * Creates a new ball according to 
+	 * standard numbers.
 	 */
-	public void ball(int paneWidth, int paneHeigth) {
-		ballX = paneWidth/2;
-		ballY = paneHeigth/2;
+	public Ball() {		
+		ImageIcon icon = new ImageIcon(this.getClass().getResource(ball));
+		image = icon.getImage();
+
+		width = image.getWidth(null);
+		heigth = image.getHeigth(null);
+
+		reset();
+	}
+
+	/**
+	 * Resets a ball's position to the 
+	 * middle and gives it a random moving
+	 * direction.
+	 */
+	public void reset() {
+		x = rectangleX + fieldWidth/2 - width/2;
+		y = rectangleY + fieldHeigth/2 - heigth/2;
+
+		deltaX = 1;
+		deltaY = 1;
+
 		Random rn = new Random();
-		ballSpeedX = rn.nextInt(10)+1;
-		if (ballSpeedX > 5) {
-			ballSpeedX = 5 - ballSpeedX;
+
+		boolean directionX = rn.nextBoolean();
+		if (direction) {
+			setBallSpeedX(-1);
 		}
-		ballSpeedY = rn.nextInt(10)+1;
-		if (ballSpeedY > 5) {
-			ballSpeedY = 5 - ballSpeedY;
+
+		boolean directionY = rn.nextBoolean();
+		if (directionY) {
+			setBallSpeedY(-1);
 		}
 	}
 	
@@ -36,24 +57,28 @@ public class Ball {
 	 * with the walls, the paddles
 	 * or enters a player's zone.
 	 */
-//	public void ifInteract() {
-//		if (ballY == getYMin()) {
-//			ballSpeedY = -ballSpeedY;
-//		} 
+	public void step() {
+		x += deltaX;
+		y += deltaY;
 
-//		if (ballY == getYMax()) {
-//			ballSpeedY = -ballSpeedY;
-//		}
+		if (y == rectangleY) {
+			setBallSpeedY(1);
+		} 
 
-//		if (ballX == getPaddleX || ballX == paneWidth - getPaddleX) {
-//			if 
-//		}
+		if (y == rectangleY + fieldHeigth) {
+			setBallSpeedY(-1);
+		}
 
-
-//	}
-
-	public void reset() {
-
+		if (ballX == getPaddleX || ballX == paneWidth - getPaddleX) {
+			if 
+		}
 	}
 
+	public void setBallSpeedX(int newSpeed) {
+		deltaX = newSpeed;
+	}
+
+	public void setBallSpeedY(int newSpeed) {
+		deltaY = newSpeed;
+	}
 }
