@@ -11,7 +11,7 @@ public class Ball extends Sprite implements Commons {
 
 	private int deltaX;
 	private int deltaY;
-	protected String ball = "../sushi1.png"
+	protected String ball = "../images/sushi1.png"
 	
 	/**
 	 * Creates a new ball according to 

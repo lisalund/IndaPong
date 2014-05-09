@@ -11,7 +11,7 @@ public class Paddle extends Sprite implements Commons {
 	private int deltaPaddle;
 	private int up;
 	private int down;
-	String paddle = "../paddle.png"
+	String paddle = "../images/paddle.png"
 	
 	/**
 	 * Creates a new paddle.
