@@ -16,15 +16,17 @@ public class Pong implements KeyListener{
 	private static Paddle p1; //the right player
 	private static Paddle p2; //the left player
 
-
+	public static void main(String[] args) {
+		new Pong();
+	}
 
 	/**
-	 * @param args
+	 * Creates a new Pong game
 	 */
-	public static void main(String[] args) {
+	public Pong() {
 		
 		JFrame window = new JFrame("Pong");
-		PongPanel pongPanel = new PongPanel();
+		Board pongPanel = new Board();
 				
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLayout(new BorderLayout());
@@ -46,6 +48,7 @@ public class Pong implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		int key = e.getKeyCode();
 		
 	}
 

@@ -7,18 +7,21 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-public class Board extends JPanel{
+public class Board extends JPanel implements Commons{
 	
-	private final static int rectangleX = 70; //the playing field's x-position
-	private final static int rectangleY = 75; //the playing field's y-position
-	private final static int fieldWidth = 650; //the width of the playing field
-	private final static int fieldHeight = 450; //the height of the playing filed
+//	private final static int rectangleX = 70; //the playing field's x-position
+//	private final static int rectangleY = 75; //the playing field's y-position
+//	private final static int fieldWidth = 650; //the width of the playing field
+//	private final static int fieldHeight = 450; //the height of the playing filed
 
 	static final int ballDiameter = 20;
 	static int ballX;
 	static int ballY;
 	static int ballSpeedX;
 	static int ballSpeedY;
+	
+	private int p1Score; //player 1's score
+	private int p2Score; //and player 2's score
 
 	
 
@@ -28,6 +31,8 @@ public class Board extends JPanel{
 	 */
 	public Board(){
 		setBackground(Color.BLACK);
+		this.p1Score = 0;
+		
 	}
 	
 	/**
