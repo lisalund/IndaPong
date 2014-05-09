@@ -1,4 +1,4 @@
-package breakout;
+package breakout; 
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
@@ -6,33 +6,33 @@ import javax.swing.ImageIcon;
  * Class for the paddles in a Pong game.
  * @author Lisa Lund & Anton Obom
  */
-public class Paddle extends Sprite implements Commons {
+public class Paddle extends Sprite implements Commons { //vars är Sprite?
 
 	private int deltaPaddle;
 	private int up;
 	private int down;
-	String paddle = "../images/paddle.png"
+	String paddle = "../images/paddle.png";
 	
 	/**
 	 * Creates a new paddle.
 	 */
 	public Paddle(int keyCodeUp, int keyCodeDown, int location) {
 		ImageIcon icon = new ImageIcon(this.getClass().getResource(paddle));
-		image = icon.getImage();
+		image = icon.getImage(); //vilken typ är image?
 
 		up = keyCodeUp;
 		down = keyCodeDown;
 
-		width = image.getWidth(null);
+		width = image.getWidth(null); //width och height borde vara fält?
 		heigth = image.getHeigth(null);
 
-		x = location;
+		x = location; //x också?
 
 		reset();
 	}
 
-	public reset() {
-		y = rectangleY + fieldHeigth/2; 
+	public void reset() { //antar att reset är void
+		y = rectangleY + fieldHeigth/2;  //y är fält?
 	}
 	
 	public void move() {
@@ -52,7 +52,7 @@ public class Paddle extends Sprite implements Commons {
 			} else if (deltaPaddle > ((rectangleY + fieldHeigth) - y))
 				y = rectangleY + fieldHeigth;
 			}
-		}
+		
 		// If paddle isn't too close to edges
 		// for a normal move
 		y += deltaPaddle;
