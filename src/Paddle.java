@@ -1,4 +1,4 @@
-package breakout; 
+
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
  * Class for the paddles in a Pong game.
  * @author Lisa Lund & Anton Obom
  */
-public class Paddle extends Sprite implements Commons { //vars är Sprite?
+public class Paddle extends Sprite implements Commons {
 
 	private int deltaPaddle;
 	private int up;
@@ -18,21 +18,21 @@ public class Paddle extends Sprite implements Commons { //vars är Sprite?
 	 */
 	public Paddle(int keyCodeUp, int keyCodeDown, int location) {
 		ImageIcon icon = new ImageIcon(this.getClass().getResource(paddle));
-		image = icon.getImage(); //vilken typ är image?
+		image = icon.getImage(); 
 
 		up = keyCodeUp;
 		down = keyCodeDown;
 
-		width = image.getWidth(null); //width och height borde vara fält?
-		heigth = image.getHeigth(null);
+		width = image.getWidth(null); 
+		height = image.getHeight(null);
 
-		x = location; //x också?
+		x = location;
 
 		reset();
 	}
 
-	public void reset() { //antar att reset är void
-		y = rectangleY + fieldHeigth/2;  //y är fält?
+	public void reset() { 
+		y = rectangleY + fieldHeight/2; 
 	}
 	
 	public void move() {
@@ -46,11 +46,11 @@ public class Paddle extends Sprite implements Commons { //vars är Sprite?
 				y = rectangleY;
 			}
 		} else {
-			if (y + deltaPaddle > rectangleY + fieldHeigth) {
+			if (y + deltaPaddle > rectangleY + fieldHeight) {
 				return;
 			// If there is less than deltaPaddle to edge
-			} else if (deltaPaddle > ((rectangleY + fieldHeigth) - y))
-				y = rectangleY + fieldHeigth;
+			} else if (deltaPaddle > ((rectangleY + fieldHeight) - y))
+				y = rectangleY + fieldHeight;
 			}
 		
 		// If paddle isn't too close to edges

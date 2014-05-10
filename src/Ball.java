@@ -1,4 +1,4 @@
-package Pong;
+
 import java.util.Random;
 import javax.swing.ImageIcon;
 
@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
  * game of pong
  * @author Lisa Lund & Anton Obom 
  */
-public class Ball extends Sprite implements Commons { //vars är Sprite? 
+public class Ball extends Sprite implements Commons {
 
 	private int deltaX;
 	private int deltaY;
@@ -19,10 +19,10 @@ public class Ball extends Sprite implements Commons { //vars är Sprite?
 	 */
 	public Ball() {		
 		ImageIcon icon = new ImageIcon(this.getClass().getResource(ball));
-		image = icon.getImage(); //vad är image för typ?
+		image = icon.getImage(); 
 
-		int width = image.getWidth(null);  //lade till int innan width och height, och detta kanske borde vara ett fält?
-		int heigth = image.getHeigth(null);
+		width = image.getWidth(null); 
+		height = image.getHeight(null);
 
 		reset();
 	}
@@ -33,16 +33,15 @@ public class Ball extends Sprite implements Commons { //vars är Sprite?
 	 * direction.
 	 */
 	public void reset() {
-		x = rectangleX + fieldWidth/2 - width/2; //width och height måste vara fält för att kunna kallas
-		y = rectangleY + fieldHeigth/2 - heigth/2; //troligtvis måste x och y också vara fält för att detta ska kompilera...
-
+		x = rectangleX + fieldWidth/2 - width/2; 
+		y = rectangleY + fieldHeight/2 - height/2; 
 		deltaX = 1;
 		deltaY = 1;
 
 		Random rn = new Random();
 
 		boolean directionX = rn.nextBoolean();
-		if (direction) {
+		if (directionX) {
 			setBallSpeedX(-1);
 		}
 
@@ -65,13 +64,14 @@ public class Ball extends Sprite implements Commons { //vars är Sprite?
 			setBallSpeedY(1);
 		} 
 
-		if (y == rectangleY + fieldHeigth) {
+		if (y == rectangleY + fieldHeight) {
 			setBallSpeedY(-1);
 		}
 
-		if (ballX == getPaddleX || ballX == paneWidth - getPaddleX) { //wat.
-			if //wat
-		}
+		//if (ballX == getPaddleX || ballX == paneWidth - getPaddleX) { 
+			//if 
+			
+			//}
 	}
 
 	public void setBallSpeedX(int newSpeed) {
