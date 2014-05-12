@@ -11,6 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Board extends JPanel implements Commons{
 	
 //	private final static int rectangleX = 70; //the playing field's x-position

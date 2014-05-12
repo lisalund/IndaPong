@@ -5,21 +5,24 @@ import javax.swing.ImageIcon;
 /**
  * The class for the ball in a 
  * game of pong
- * @author Lisa Lund & Anton Obom 
+ * @author Anton Obom 
  */
 public class Ball extends Sprite implements Commons {
 
 	private int deltaX;
 	private int deltaY;
-	protected String ball = "../images/sushi1.png";
+	protected String ball = "images/sushi1.png";
 	
 	/**
 	 * Creates a new ball according to 
 	 * standard numbers.
 	 */
 	public Ball() {		
-		ImageIcon icon = new ImageIcon(this.getClass().getResource(ball));
+//		ImageIcon icon = new ImageIcon(this.getClass().getResource(ball));
+		ImageIcon icon = new ImageIcon(ball);
+
 		image = icon.getImage(); 
+		
 
 		width = image.getWidth(null); 
 		height = image.getHeight(null);

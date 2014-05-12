@@ -4,20 +4,22 @@ import javax.swing.ImageIcon;
 
 /**
  * Class for the paddles in a Pong game.
- * @author Lisa Lund & Anton Obom
+ * @author Anton Obom
  */
 public class Paddle extends Sprite implements Commons {
 
 	private int deltaPaddle;
 	private int up;
 	private int down;
-	String paddle = "../images/paddle.png";
+	String paddle = "images/paddle.png";
 	
 	/**
 	 * Creates a new paddle.
 	 */
 	public Paddle(int keyCodeUp, int keyCodeDown, int location) {
-		ImageIcon icon = new ImageIcon(this.getClass().getResource(paddle));
+		//ImageIcon icon = new ImageIcon(this.getClass().getResource(paddle));
+		ImageIcon icon = new ImageIcon(paddle);
+
 		image = icon.getImage(); 
 
 		up = keyCodeUp;
