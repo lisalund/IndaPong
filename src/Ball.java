@@ -67,11 +67,17 @@ public class Ball extends Sprite implements Commons {
 			setBallSpeedY(1);
 		} 
 
-		if (y == rectangleY + fieldHeight) {
+		if (y == rectangleY + fieldHeight - image.getHeight(null)) {
 			setBallSpeedY(-1);
 		}
 
-		//if (ballX == getPaddleX || ballX == paneWidth - getPaddleX) { 
+		if (x == rectangleX) { 
+			setBallSpeedX(deltaX *= -1);
+		}
+		
+		if(x == rectangleX + fieldWidth - image.getWidth(null)){
+			setBallSpeedX(deltaX *= -1);
+		}
 			//if 
 			
 			//}
@@ -83,5 +89,10 @@ public class Ball extends Sprite implements Commons {
 
 	public void setBallSpeedY(int newSpeed) {
 		deltaY = newSpeed;
+	}
+	
+	public void invertSpeed(){
+		setBallSpeedX(deltaX *= -1);
+		setBallSpeedY(deltaY *= -1); 
 	}
 }

@@ -25,8 +25,8 @@ public class Paddle extends Sprite implements Commons {
 		up = keyCodeUp;
 		down = keyCodeDown;
 
-		width = image.getWidth(null); 
-		height = image.getHeight(null);
+		height = image.getWidth(null); //don't ask why, but this works.
+		width = image.getHeight(null); 
 
 		x = location;
 
@@ -88,5 +88,6 @@ public class Paddle extends Sprite implements Commons {
 	public int getDown(){
 		return down;
 	}
+	
 
 }

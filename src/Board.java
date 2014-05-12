@@ -1,11 +1,13 @@
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,8 +31,8 @@ public class Board extends JPanel implements Commons{
 	private Ball ball;
 	private Paddle p1;
 	private Paddle p2;
-	private int p1Score; //player 1's score
-	private int p2Score; //and player 2's score
+	private Integer p1Score; //player 1's score
+	private Integer p2Score; //and player 2's score
 
 	
 
@@ -42,7 +44,7 @@ public class Board extends JPanel implements Commons{
 	public Board(){
 		setBackground(Color.BLACK);
 		this.ball = new Ball();
-		this.p1 = new Paddle(KeyEvent.VK_UP, KeyEvent.VK_DOWN, (getXMax() - PADDLEPADDING));
+		this.p1 = new Paddle(KeyEvent.VK_UP, KeyEvent.VK_DOWN, (getXMax() - PADDLEPADDING - 16));
 		this.p2 = new Paddle(KeyEvent.VK_W, KeyEvent.VK_S, (getXMin() + PADDLEPADDING));
 		this.p1Score = 0;
 		this.p2Score = 0;
@@ -107,6 +109,7 @@ public class Board extends JPanel implements Commons{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
+		g.setFont(new Font("ArcadeClassic", Font.PLAIN, 37)); //länk till fonten: http://www.dafont.com/arcade-classic-pizz.font
 		g.drawRect(rectangleX, rectangleY, fieldWidth, fieldHeight);
 		
 		//draw a line down the middle of the playing field
@@ -119,6 +122,8 @@ public class Board extends JPanel implements Commons{
 				p1.getWidth(), this);
 		g.drawImage(p2.getImage(), p2.getX(), p2.getY(), p2.getHeight(),
 				p2.getWidth(), this);
+		g.drawString(p1Score.toString(), getXMax() - 20, getYMin() - 10);
+		g.drawString(p2Score.toString(), getXMin() + 10, getYMin() - 10);
 		
 		Toolkit.getDefaultToolkit().sync();
 		g.dispose();
@@ -130,7 +135,7 @@ public class Board extends JPanel implements Commons{
 	 * @author Lisa Lund
 	 *
 	 */
-	private class Adapter extends KeyAdapter {
+	private class Adapter extends KeyAdapter{
 		
 		/**
 		 * Checks if the key pressed belongs to p1 or p2 and acts accordingly
@@ -161,6 +166,22 @@ public class Board extends JPanel implements Commons{
 				p2.keyReleased(e);
 			}
 		}
+
+	}
+	
+	/**
+	 * Checks if any player has scored. If they have increments points
+	 * and resets the ball.
+	 */
+	public void score(){
+		if(ball.x == getXMin()){ //p1 scored
+			p1Score++;
+			ball.reset();
+		}
+		if(ball.x == getXMax() - ball.getWidth()){ //p2 scored.
+			p2Score++;
+			ball.reset();	
+		}
 	}
 	
 	/**
@@ -175,6 +196,7 @@ public class Board extends JPanel implements Commons{
 			ball.step();
 			p1.move();
 			p2.move();
+			score();
 			repaint();
 			
 		}
