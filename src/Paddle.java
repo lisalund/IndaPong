@@ -60,6 +60,7 @@ public class Paddle extends Sprite implements Commons {
 		y += deltaPaddle;
 	}
 	
+	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 
@@ -81,10 +82,16 @@ public class Paddle extends Sprite implements Commons {
 		}
 	}
 	
+	/**
+	 * returns the key that moves the paddle up
+	 */
 	public int getUp(){
 		return up;
 	}
 	
+	/**
+	 * returns the key that moves the paddle down
+	 */
 	public int getDown(){
 		return down;
 	}

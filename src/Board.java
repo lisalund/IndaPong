@@ -49,6 +49,7 @@ public class Board extends JPanel implements Commons{
 		this.p1Score = 0;
 		this.p2Score = 0;
 		
+		
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new Task(), 1000, 10);
 		
@@ -109,7 +110,7 @@ public class Board extends JPanel implements Commons{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("ArcadeClassic", Font.PLAIN, 37)); //länk till fonten: http://www.dafont.com/arcade-classic-pizz.font
+		g.setFont(new Font("ArcadeClassic", Font.PLAIN, 60)); //länk till fonten: http://www.dafont.com/arcade-classic-pizz.font
 		g.drawRect(rectangleX, rectangleY, fieldWidth, fieldHeight);
 		
 		//draw a line down the middle of the playing field
@@ -117,12 +118,12 @@ public class Board extends JPanel implements Commons{
 				(fieldWidth/2), rectangleY + fieldHeight);
 		
 		g.drawImage(ball.getImage(), ball.getX(), ball.getY(), 
-				ball.getHeight(), ball.getWidth(), this); //TODO: dessa i Sprite-klassen
+				ball.getHeight(), ball.getWidth(), this);
 		g.drawImage(p1.getImage(), p1.getX(), p1.getY(), p1.getHeight(),
 				p1.getWidth(), this);
 		g.drawImage(p2.getImage(), p2.getX(), p2.getY(), p2.getHeight(),
 				p2.getWidth(), this);
-		g.drawString(p1Score.toString(), getXMax() - 20, getYMin() - 10);
+		g.drawString(p1Score.toString(), getXMax() - 60, getYMin() - 10);
 		g.drawString(p2Score.toString(), getXMin() + 10, getYMin() - 10);
 		
 		Toolkit.getDefaultToolkit().sync();
@@ -141,36 +142,38 @@ public class Board extends JPanel implements Commons{
 		 * Checks if the key pressed belongs to p1 or p2 and acts accordingly
 		 */
 		public void keyPressed(KeyEvent e){
-			int key = e.getKeyCode();
-			
-			if(key == p1.getUp() || key == p1.getDown()){
-				p1.keyPressed(e);
-			}
-			
-			if(key == p2.getUp() || key == p2.getDown()){
-				p2.keyPressed(e);
-			}
+			p1.keyPressed(e);
+//			int key = e.getKeyCode();
+//			
+//			if(key == p1.getUp() || key == p1.getDown()){
+//				p1.keyPressed(e);
+//			}
+//			
+//			if(key == p2.getUp() || key == p2.getDown()){
+//				p2.keyPressed(e);
+//			}
 		}
 		
 		/**
 		 * Checks if the key released belongs to p1 or p2 and acts accordingly
 		 */
 		public void keyReleased(KeyEvent e){
-			int key = e.getKeyCode();
-			
-			if (key == p1.getUp() || key == p1.getDown()){
-				p1.keyReleased(e);
-			}
-			
-			if (key == p2.getUp() || key == p2.getDown()){
-				p2.keyReleased(e);
-			}
+			p1.keyReleased(e);
+//			int key = e.getKeyCode();
+//			
+//			if (key == p1.getUp() || key == p1.getDown()){
+//				p1.keyReleased(e);
+//			}
+//			
+//			if (key == p2.getUp() || key == p2.getDown()){
+//				p2.keyReleased(e);
+//			}
 		}
 
 	}
 	
 	/**
-	 * Checks if any player has scored. If they have increments points
+	 * Checks if any player has scored. If they have increases points
 	 * and resets the ball.
 	 */
 	public void score(){
@@ -185,6 +188,27 @@ public class Board extends JPanel implements Commons{
 	}
 	
 	/**
+	 * Checks if the ball hits a paddle and reverses the ball's x-speed if it does
+	 */
+	public void hitPaddle(){ //TODO
+		//if the ball hits the area between the paddle's top and bottom.
+		if(ball.getX() == (p1.getX() - p1.getWidth()) && (ball.getY() >= p1.getY() && ball.getY() <= (p1.getY() + p1.getHeight()))){
+			ball.setBallSpeedX(-1);
+		}
+		
+		if(ball.getX() == p2.getX() && (ball.getY() >= p2.getY() && ball.getY() <= (p2.getY() + p2.getHeight()))){
+			ball.setBallSpeedX(1);
+		}
+	}
+	
+	/**
+	 * Checks if the ball collides with the paddles
+	 */
+	public void checkCollision(){
+		//TODO
+	}
+	
+	/**
 	 * Creates a task to be performed every set interval.
 	 * @author Lisa Lund
 	 *
@@ -196,6 +220,7 @@ public class Board extends JPanel implements Commons{
 			ball.step();
 			p1.move();
 			p2.move();
+			hitPaddle();
 			score();
 			repaint();
 			
