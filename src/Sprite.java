@@ -1,4 +1,5 @@
 import java.awt.Image;
+import java.awt.Rectangle;
 
 /**
  * A base class for Pong, where the images for
@@ -54,6 +55,10 @@ public class Sprite {
 	 */
 	public int getWidth(){
 		return width;
+	}
+	
+	Rectangle getRect() {
+		return new Rectangle(x, y, image.getWidth(null), image.getHeight(null));
 	}
 	
 	/**
