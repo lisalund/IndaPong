@@ -2,23 +2,25 @@
 import java.util.Random;
 import javax.swing.ImageIcon;
 
+
 /**
  * The class for the ball in a 
  * game of pong
- * @author Anton Obom & Lisa Lund
+ * @author Anton Öbom & Lisa Lund
+ * @version 2014-05-15
  */
 public class Ball extends Sprite implements Commons {
 
-	private int deltaX;
-	private int deltaY;
-	private int speed;
+	private double deltaX;
+	private double deltaY;
+	private double speed;
 	protected String ball = "images/sushi1.png";
 	
 	/**
 	 * Creates a new ball according to 
 	 * standard numbers.
 	 */
-	public Ball(int speed) {		
+	public Ball(double speed) {		
 //		ImageIcon icon = new ImageIcon(this.getClass().getResource(ball));
 		ImageIcon icon = new ImageIcon(ball);
 
@@ -47,12 +49,12 @@ public class Ball extends Sprite implements Commons {
 
 		boolean directionX = rn.nextBoolean();
 		if (directionX) {
-			setBallSpeedX(-speed);
+			setDeltaX(-speed);
 		}
 
 		boolean directionY = rn.nextBoolean();
 		if (directionY) {
-			setBallSpeedY(-speed);
+			setDeltaY(-speed);
 		}
 	}
 	
@@ -66,33 +68,66 @@ public class Ball extends Sprite implements Commons {
 		y += deltaY;
 
 		if (y <= rectangleY) {
-			setBallSpeedY(deltaY = speed);
+			setDeltaY(deltaY = speed);
 		} 
 
 		if (y >= rectangleY + fieldHeight - image.getHeight(null)) {
-			setBallSpeedY(deltaY = -speed);
+			setDeltaY(deltaY = -speed);
 		}
 
 		if (x == rectangleX) { 
-			setBallSpeedX(deltaX = speed);
+			setDeltaX(deltaX = speed);
 		}
 		
 		if(x == rectangleX + fieldWidth - image.getWidth(null)){
-			setBallSpeedX(deltaX = -speed);
+			setDeltaX(deltaX = -speed);
 		}
 	}
 
-	public void setBallSpeedX(int newSpeed) {
+	public void setDeltaX(double newSpeed) {
 		deltaX = newSpeed;
 	}
 
-	public void setBallSpeedY(int newSpeed) {
+	public void setDeltaY(double newSpeed) {
 		deltaY = newSpeed;
 	}
 	
 	public void invertSpeed(){
 
-		setBallSpeedX(deltaX *= -1);
-		setBallSpeedY(deltaY *= -1); 
+		setDeltaX(deltaX *= -1);
+		setDeltaY(deltaY *= -1); 
+	}
+	
+	public void topBounce(){
+		if(Math.abs(deltaX) > speed){ //if it had a middle bounce before
+			setDeltaX((deltaX /= -3)*2);
+			setDeltaY(-speed);
+		}
+		else{
+		setDeltaX(deltaX *= -1);
+		setDeltaY(-speed);
+		}
+	}
+	
+	public void middleBounce(){
+		if(Math.abs(deltaX) > speed){
+			setDeltaX(deltaX *= -1);
+			setDeltaY(0);
+		}
+		else{
+		setDeltaX(deltaX *= -1.5);
+		setDeltaY(0);
+		}
+	}
+	
+	public void lowBounce(){
+		if(Math.abs(deltaX) > speed){ //if it had a middle bounce before
+			setDeltaX((deltaX /= -3)*2);
+			setDeltaY(speed);
+		}
+		else{
+		setDeltaX(deltaX *= -1);
+		setDeltaY(speed);
+		}
 	}
 }

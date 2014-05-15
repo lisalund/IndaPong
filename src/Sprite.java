@@ -5,7 +5,7 @@ import java.awt.Rectangle;
  * A base class for Pong, where the images for
  * the ball and paddles are held and their variables can be set
  * @author Lusa Lund
- *
+ * @version 2014-05-10
  */
 public class Sprite {
 

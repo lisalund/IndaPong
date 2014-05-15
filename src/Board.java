@@ -2,17 +2,19 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.BasicStroke;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
 
+/**
+ * The class where the game itself is run
+ * and where most of the game logics are held.
+ * @author Lisa Lund & Anton Öbom
+ * @version 2014-05-15
+ */
 @SuppressWarnings("serial")
 public class Board extends JPanel implements Commons{
 
@@ -22,7 +24,7 @@ public class Board extends JPanel implements Commons{
 	private Paddle p2;
 	private Integer p1Score; //player 1's score
 	private Integer p2Score; //and player 2's score
-	private final static int BALLSPEED = 2;
+	private final static double BALLSPEED = 3;
 	
 
 	/**
@@ -44,24 +46,8 @@ public class Board extends JPanel implements Commons{
 		timer.scheduleAtFixedRate(new Task(), 1000, 10);
 		
 	}
-	
-//	/**
-//	 * Notifies the program that a new game will be initiated
-//	 */
-//	public void addNotify(){
-//		super.addNotify();
-//		gameInit();
-//	}
-//	
-//	/**
-//	 * initiates the game, adding a ball.
-//	 */
-//	public void gameInit(){
-//		this.ball = new Ball();
-//		
-//	}
-	
-	
+
+		
 	/**
 	 * returns the y-value for the top of the playing field
 	 */
@@ -181,11 +167,41 @@ public class Board extends JPanel implements Commons{
 	 */
 	public void checkInteraction() {
 		if ((ball.getRect()).intersects(p1.getRect())) {
-			ball.invertSpeed();
+			int pointOfInteraction = (ball.getY() + (ball.getHeight()/2) - p1.getY());
+			int paddlePart = (p1.getWidth()/3);
+			if(pointOfInteraction < 0){
+				ball.lowBounce();
+			}
+			else if(pointOfInteraction > p1.getWidth()){
+				ball.lowBounce();
+			}
+			if (pointOfInteraction < paddlePart) {
+				ball.topBounce();
+			} else if (pointOfInteraction >= (paddlePart * 2)) {
+				ball.lowBounce();
+			} else {
+				ball.middleBounce();
+			}
+			
 		} else if ((ball.getRect()).intersects(p2.getRect())) {
-			ball.invertSpeed();
+			int pointOfInteraction = (ball.getY() + (ball.getHeight()/2) - p2.getY());
+			int paddlePart = (p2.getWidth()/3);
+			if(pointOfInteraction < 0){
+				ball.topBounce();
+			}
+			else if(pointOfInteraction > p2.getWidth()){
+				ball.lowBounce();
+			}
+			if (pointOfInteraction < paddlePart) {
+				ball.topBounce();
+			} else if (pointOfInteraction >= (paddlePart * 2)) {
+				ball.lowBounce();
+			} else {
+				ball.middleBounce();
+			}
 		}
 	}
+	
 	
 	/**
 	 * Creates a task to be performed every set interval.
@@ -196,10 +212,10 @@ public class Board extends JPanel implements Commons{
 
 		@Override
 		public void run() {
+			checkInteraction();
 			ball.step();
 			p1.move();
 			p2.move();
-			checkInteraction();
 			score();
 			repaint();
 			

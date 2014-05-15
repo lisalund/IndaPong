@@ -4,7 +4,8 @@ import javax.swing.ImageIcon;
 
 /**
  * Class for the paddles in a Pong game.
- * @author Anton Obom
+ * @author Anton Öbom
+ * @version 2014-05-15
  */
 public class Paddle extends Sprite implements Commons {
 
@@ -24,8 +25,9 @@ public class Paddle extends Sprite implements Commons {
 
 		up = keyCodeUp;
 		down = keyCodeDown;
-
-		height = image.getWidth(null); //don't ask why, but this works.
+		
+		// Don't know why this works
+		height = image.getWidth(null);
 		width = image.getHeight(null); 
 
 		x = location;
@@ -44,16 +46,17 @@ public class Paddle extends Sprite implements Commons {
 			if (y + deltaPaddle < rectangleY) {
 				return;
 			// If there is less than deltaPaddle to edge
-			} else if (deltaPaddle > y - rectangleY) {
+			} else if ((deltaPaddle * -1) > y - rectangleY) {
 				y = rectangleY;
 			}
-		} else {
-			if (y + deltaPaddle > rectangleY + fieldHeight) {
+		} else { // When deltaPaddle is positive
+			if ((y + deltaPaddle + width) > rectangleY + fieldHeight) {
 				return;
 			// If there is less than deltaPaddle to edge
-			} else if (deltaPaddle > ((rectangleY + fieldHeight) - y))
-				y = rectangleY + fieldHeight;
-			}
+			} else if (deltaPaddle + width > ((rectangleY + fieldHeight) - y)) {
+				y = (rectangleY + fieldHeight - width);
+			} 
+		}
 		
 		// If paddle isn't too close to edges
 		// for a normal move
@@ -64,9 +67,9 @@ public class Paddle extends Sprite implements Commons {
 		int key = e.getKeyCode();
 
 		if (key == up) {
-			deltaPaddle = -2;
+			deltaPaddle = -6;
 		} else if (key == down) {
-			deltaPaddle = 2;
+			deltaPaddle = 6;
 		}
 
 	}
