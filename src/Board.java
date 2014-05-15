@@ -22,7 +22,7 @@ public class Board extends JPanel implements Commons{
 	private Paddle p2;
 	private Integer p1Score; //player 1's score
 	private Integer p2Score; //and player 2's score
-
+	private final static int BALLSPEED = 2;
 	
 
 	/**
@@ -34,7 +34,7 @@ public class Board extends JPanel implements Commons{
 		addKeyListener(new Adapter());
 		setFocusable(true);
 		setBackground(Color.BLACK);
-		this.ball = new Ball();
+		this.ball = new Ball(BALLSPEED);
 		this.p1 = new Paddle(KeyEvent.VK_UP, KeyEvent.VK_DOWN, (getXMax() - PADDLEPADDING - 16));
 		this.p2 = new Paddle(KeyEvent.VK_W, KeyEvent.VK_S, (getXMin() + PADDLEPADDING));
 		this.p1Score = 0;
@@ -166,11 +166,11 @@ public class Board extends JPanel implements Commons{
 	 * and resets the ball.
 	 */
 	public void score(){
-		if(ball.x == getXMin()){ //p1 scored
+		if(ball.x <= getXMin()){ //p1 scored
 			p1Score++;
 			ball.reset();
 		}
-		if(ball.x == getXMax() - ball.getWidth()){ //p2 scored.
+		if(ball.x >= getXMax() - ball.getWidth()){ //p2 scored.
 			p2Score++;
 			ball.reset();	
 		}

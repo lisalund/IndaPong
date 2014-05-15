@@ -5,19 +5,20 @@ import javax.swing.ImageIcon;
 /**
  * The class for the ball in a 
  * game of pong
- * @author Anton Obom 
+ * @author Anton Obom & Lisa Lund
  */
 public class Ball extends Sprite implements Commons {
 
 	private int deltaX;
 	private int deltaY;
+	private int speed;
 	protected String ball = "images/sushi1.png";
 	
 	/**
 	 * Creates a new ball according to 
 	 * standard numbers.
 	 */
-	public Ball() {		
+	public Ball(int speed) {		
 //		ImageIcon icon = new ImageIcon(this.getClass().getResource(ball));
 		ImageIcon icon = new ImageIcon(ball);
 
@@ -26,6 +27,7 @@ public class Ball extends Sprite implements Commons {
 
 		width = image.getWidth(null); 
 		height = image.getHeight(null);
+		this.speed = speed;
 
 		reset();
 	}
@@ -38,19 +40,19 @@ public class Ball extends Sprite implements Commons {
 	public void reset() {
 		x = rectangleX + fieldWidth/2 - width/2; 
 		y = rectangleY + fieldHeight/2 - height/2; 
-		deltaX = 1;
-		deltaY = 1;
+		deltaX = speed;
+		deltaY = speed;
 
 		Random rn = new Random();
 
 		boolean directionX = rn.nextBoolean();
 		if (directionX) {
-			setBallSpeedX(-1);
+			setBallSpeedX(-speed);
 		}
 
 		boolean directionY = rn.nextBoolean();
 		if (directionY) {
-			setBallSpeedY(-1);
+			setBallSpeedY(-speed);
 		}
 	}
 	
@@ -63,24 +65,21 @@ public class Ball extends Sprite implements Commons {
 		x += deltaX;
 		y += deltaY;
 
-		if (y == rectangleY) {
-			setBallSpeedY(1);
+		if (y <= rectangleY) {
+			setBallSpeedY(deltaY = speed);
 		} 
 
-		if (y == rectangleY + fieldHeight - image.getHeight(null)) {
-			setBallSpeedY(-1);
+		if (y >= rectangleY + fieldHeight - image.getHeight(null)) {
+			setBallSpeedY(deltaY = -speed);
 		}
 
 		if (x == rectangleX) { 
-			setBallSpeedX(deltaX *= -1);
+			setBallSpeedX(deltaX = speed);
 		}
 		
 		if(x == rectangleX + fieldWidth - image.getWidth(null)){
-			setBallSpeedX(deltaX *= -1);
+			setBallSpeedX(deltaX = -speed);
 		}
-			//if 
-			
-			//}
 	}
 
 	public void setBallSpeedX(int newSpeed) {
@@ -92,6 +91,7 @@ public class Ball extends Sprite implements Commons {
 	}
 	
 	public void invertSpeed(){
+
 		setBallSpeedX(deltaX *= -1);
 		setBallSpeedY(deltaY *= -1); 
 	}
