@@ -25,6 +25,7 @@ public class Board extends JPanel implements Commons{
 	private Integer p1Score; //player 1's score
 	private Integer p2Score; //and player 2's score
 	private final static double BALLSPEED = 3;
+	private int paddlePart;
 	
 
 	/**
@@ -39,6 +40,7 @@ public class Board extends JPanel implements Commons{
 		this.ball = new Ball(BALLSPEED);
 		this.p1 = new Paddle(KeyEvent.VK_UP, KeyEvent.VK_DOWN, (getXMax() - PADDLEPADDING - 16));
 		this.p2 = new Paddle(KeyEvent.VK_W, KeyEvent.VK_S, (getXMin() + PADDLEPADDING));
+		this.paddlePart = (p1.getWidth()/3);
 		this.p1Score = 0;
 		this.p2Score = 0;
 		
@@ -168,14 +170,13 @@ public class Board extends JPanel implements Commons{
 	public void checkInteraction() {
 		if ((ball.getRect()).intersects(p1.getRect())) {
 			int pointOfInteraction = (ball.getY() + (ball.getHeight()/2) - p1.getY());
-			int paddlePart = (p1.getWidth()/3);
 			if(pointOfInteraction < 0){
-				ball.lowBounce();
+				ball.topBounce();
 			}
 			else if(pointOfInteraction > p1.getWidth()){
 				ball.lowBounce();
 			}
-			if (pointOfInteraction < paddlePart) {
+			else if (pointOfInteraction < paddlePart) {
 				ball.topBounce();
 			} else if (pointOfInteraction >= (paddlePart * 2)) {
 				ball.lowBounce();
@@ -184,15 +185,14 @@ public class Board extends JPanel implements Commons{
 			}
 			
 		} else if ((ball.getRect()).intersects(p2.getRect())) {
-			int pointOfInteraction = (ball.getY() + (ball.getHeight()/2) - p2.getY());
-			int paddlePart = (p2.getWidth()/3);
+			int pointOfInteraction = (ball.getY() + (ball.getWidth()/2) - p2.getY());
 			if(pointOfInteraction < 0){
 				ball.topBounce();
 			}
 			else if(pointOfInteraction > p2.getWidth()){
 				ball.lowBounce();
 			}
-			if (pointOfInteraction < paddlePart) {
+			else if (pointOfInteraction < paddlePart) {
 				ball.topBounce();
 			} else if (pointOfInteraction >= (paddlePart * 2)) {
 				ball.lowBounce();
@@ -212,10 +212,10 @@ public class Board extends JPanel implements Commons{
 
 		@Override
 		public void run() {
-			checkInteraction();
 			ball.step();
 			p1.move();
 			p2.move();
+			checkInteraction();
 			score();
 			repaint();
 			
